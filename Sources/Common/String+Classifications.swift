@@ -178,7 +178,9 @@ extension String {
                 let words = text.components(separatedBy: .whitespaces)
                 if let idx = words.firstIndex(where: { $0 == name }), words.count > (idx + 1) {
                     let last = words[idx + 1]
-                    if last.count < 3, words.count > (idx + 2) {
+                    let secondNextIndex = idx + 2
+                    // some how swift had an issue with `(idx + 2)` but `idx + 2` was working fine. So moved `(idx + 2)` in a constant
+                    if last.count < 3, words.count > secondNextIndex {
                         return "\(name) \(words[idx + 1]) \(words[idx + 2])"
                     } else {
                         return "\(name) \(words[idx + 1])"
